@@ -2,6 +2,34 @@ import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
+const skills = [
+   {
+      skill: "Html - CSS",
+      level: "Advanced",
+      color: "orangered",
+   },
+   {
+      skill: "JavaScript",
+      level: "Advanced",
+      color: "yellow",
+   },
+   {
+      skill: "React.js",
+      level: "intermediate",
+      color: "skyblue",
+   },
+   {
+      skill: "Node.js",
+      level: "intermediate",
+      color: "lightgreen",
+   },
+   {
+      skill: "MongoDB",
+      level: "Beginner",
+      color: "green",
+   },
+];
+
 function Avatar() {
    return (
       <div>
@@ -22,19 +50,22 @@ function Intro() {
 function SkillList() {
    return (
       <div className="skill-list">
-         <Skill skill="Html - CSS" color="orangered" />
-         <Skill skill="JavaScript" color="yellow" />
-         <Skill skill="React.js" color="skyblue" />
-         <Skill skill="Node.js" color="lightgreen" />
-         <Skill skill="MongoDB" color="green" />
+         {skills.map((skill) => (
+            <Skill skill={skill.skill} color={skill.color} level={skill.level} />
+         ))}
       </div>
    );
 }
 
-function Skill(props) {
+function Skill({ skill, color, level }) {
    return (
-      <div className="skill" style={{ backgroundColor: props.color }}>
-         <span>{props.skill}</span>
+      <div className="skill" style={{ backgroundColor: color }}>
+         <span>{skill}</span>
+         <span>
+            {level === "Beginner" && "🔰"}
+            {level === "intermediate" && "🍾"}
+            {level === "Advanced" && "⚡"}
+         </span>
       </div>
    );
 }
